@@ -12,9 +12,9 @@ from keras.layers import Dense, Dropout, Flatten
 from keras.layers import Conv2D, MaxPooling2D
 from keras import backend as K
 
-batch_size = 128
+batch_size = 64
 num_classes = 10
-epochs = 12
+epochs = 36
 
 # input image dimensions
 img_rows, img_cols = 28, 28
@@ -44,14 +44,13 @@ y_train = keras.utils.np_utils.to_categorical(y_train, num_classes)
 y_test = keras.utils.np_utils.to_categorical(y_test, num_classes)
 
 model = Sequential()
-model.add(Conv2D(32,
+model.add(Conv2D(32,(3,3),
                  activation='relu',
                  input_shape=input_shape,
-                 nb_row=3,
-                 nb_col=3))
-model.add(Conv2D(64, activation='relu',
-                 nb_row=3,
-                 nb_col=3))
+                 ))
+model.add(Conv2D(64, (3,3),
+                 activation='relu'
+                 ));
 # model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.35))
